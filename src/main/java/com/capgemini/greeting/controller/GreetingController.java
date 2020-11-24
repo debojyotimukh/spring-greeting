@@ -1,20 +1,26 @@
 package com.capgemini.greeting.controller;
 
-import java.util.concurrent.atomic.AtomicLong;
-
 import com.capgemini.greeting.model.Greeting;
+import com.capgemini.greeting.model.User;
+import com.capgemini.greeting.service.IGreetingService;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/greetings")
 public class GreetingController {
-    private static final String template = "Hello, %s!";
-    private final AtomicLong counter = new AtomicLong();
 
-    @GetMapping("/greeting")
+    @Autowired
+    private IGreetingService greetingService;
+
+    @GetMapping("")
     public Greeting greeting(@RequestParam(value = "name", defaultValue = "world") String name) {
-        return new Greeting(counter.incrementAndGet(), String.format(template, name));
+        User user = new User();
+        user.setFirstName(name);
+        return greetingService.addGreeting(user);
     }
 }
