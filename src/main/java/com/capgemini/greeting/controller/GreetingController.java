@@ -7,7 +7,9 @@ import com.capgemini.greeting.model.User;
 import com.capgemini.greeting.service.IGreetingService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -47,6 +49,11 @@ public class GreetingController {
     @PutMapping(value = "/query")
     public boolean edit(@RequestParam(value = "id") long id, @RequestParam(value = "message") String message) {
         return greetingService.editMessage(id, message);
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public boolean delete(@PathVariable long id) {
+        return greetingService.delete(id);
     }
 
 }

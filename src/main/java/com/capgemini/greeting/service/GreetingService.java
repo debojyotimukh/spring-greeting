@@ -36,20 +36,22 @@ public class GreetingService implements IGreetingService {
                 .collect(Collectors.toList());
     }
 
-
     @Override
     public boolean delete(long id) {
-        // TODO Auto-generated method stub
-        return false;
+        if (!greetingRepository.existsById(id))
+            return false;
+        greetingRepository.deleteById(id);
+        return true;
     }
 
-	@Override
-	public boolean editMessage(long id, String newMessage) {
-        if(!greetingRepository.existsById(id)) return false;
-        Greeting greeting=greetingRepository.getOne(id);
+    @Override
+    public boolean editMessage(long id, String newMessage) {
+        if (!greetingRepository.existsById(id))
+            return false;
+        Greeting greeting = greetingRepository.getOne(id);
         greeting.setMessage(newMessage);
         greetingRepository.save(greeting);
         return true;
-	}
+    }
 
 }
