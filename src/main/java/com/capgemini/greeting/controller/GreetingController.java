@@ -17,7 +17,7 @@ public class GreetingController {
     @Autowired
     private IGreetingService greetingService;
 
-    @GetMapping("")
+    @GetMapping(value = { "", "/", "/home" })
     public Greeting greeting(@RequestParam(value = "name", defaultValue = "world") String name) {
         User user = new User();
         user.setFirstName(name);

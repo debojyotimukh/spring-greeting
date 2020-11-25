@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class GreetingService implements IGreetingService {
-    private static final String template = "Hello, %s!";
+    private static final String template = "Hello %s!";
     private final AtomicLong counter = new AtomicLong();
 
     @Autowired
@@ -19,8 +19,8 @@ public class GreetingService implements IGreetingService {
 
     @Override
     public Greeting addGreeting(User user) {
-        String message = String.format(template, (user.toString().isEmpty() ? "Hello World!" : user.toString()));
-        return greetingRepository.save(new Greeting(counter.incrementAndGet(), String.format(template, message)));
+        String message = String.format(template, (user.toString().isEmpty() ? "World!" : user.toString()));
+        return greetingRepository.save(new Greeting(counter.incrementAndGet(), message));
     }
 
     @Override
