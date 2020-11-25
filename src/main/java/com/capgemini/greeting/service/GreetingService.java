@@ -1,6 +1,8 @@
 package com.capgemini.greeting.service;
 
+import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
+import java.util.stream.Collectors;
 
 import com.capgemini.greeting.model.Greeting;
 import com.capgemini.greeting.model.User;
@@ -27,5 +29,24 @@ public class GreetingService implements IGreetingService {
     public Greeting getGreetingById(long id) {
         return greetingRepository.findById(id).get();
     }
+
+    @Override
+    public List<String> getAllMessages() {
+        return greetingRepository.findAll().stream().map(greeting -> greeting.getMessage())
+                .collect(Collectors.toList());
+    }
+
+
+    @Override
+    public boolean delete(long id) {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
+	@Override
+	public boolean editMessage(long id, String newMessage) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 
 }

@@ -1,5 +1,7 @@
 package com.capgemini.greeting.controller;
 
+import java.util.List;
+
 import com.capgemini.greeting.model.Greeting;
 import com.capgemini.greeting.model.User;
 import com.capgemini.greeting.service.IGreetingService;
@@ -34,6 +36,11 @@ public class GreetingController {
     @PostMapping(value = "/")
     public Greeting greeting(@RequestBody User user) {
         return greetingService.addGreeting(user);
+    }
+
+    @GetMapping(value = "/query/messages")
+    public List<String> getAll(){
+        return greetingService.getAllMessages();
     }
 
 }
