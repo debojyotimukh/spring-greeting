@@ -45,8 +45,11 @@ public class GreetingService implements IGreetingService {
 
 	@Override
 	public boolean editMessage(long id, String newMessage) {
-		// TODO Auto-generated method stub
-		return false;
+        if(!greetingRepository.existsById(id)) return false;
+        Greeting greeting=greetingRepository.getOne(id);
+        greeting.setMessage(newMessage);
+        greetingRepository.save(greeting);
+        return true;
 	}
 
 }

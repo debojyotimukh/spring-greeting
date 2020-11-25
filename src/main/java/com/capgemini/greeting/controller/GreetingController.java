@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
@@ -39,8 +40,13 @@ public class GreetingController {
     }
 
     @GetMapping(value = "/query/messages")
-    public List<String> getAll(){
+    public List<String> getAll() {
         return greetingService.getAllMessages();
+    }
+
+    @PutMapping(value = "/query")
+    public boolean edit(@RequestParam(value = "id") long id, @RequestParam(value = "message") String message) {
+        return greetingService.editMessage(id, message);
     }
 
 }
