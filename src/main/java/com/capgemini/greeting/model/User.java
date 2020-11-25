@@ -24,9 +24,8 @@ public class User {
     public String toString() {
         String str = (firstName != null) ? firstName : "";
         String str2 = (lastName != null) ? lastName : "";
-        str = str + str2;
+        str = str + " " + str2;
         return str;
-        // return "User [firstName=" + firstName + ", lastName=" + lastName + "]";
     }
 
 }

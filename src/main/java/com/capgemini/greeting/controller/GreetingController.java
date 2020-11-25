@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
 @RequestMapping("/greetings")
@@ -28,4 +30,10 @@ public class GreetingController {
     public Greeting getGreeting(@RequestParam(value = "id") long id) {
         return greetingService.getGreetingById(id);
     }
+
+    @PostMapping(value = "/")
+    public Greeting greeting(@RequestBody User user) {
+        return greetingService.addGreeting(user);
+    }
+
 }
